@@ -80,7 +80,7 @@ var question7 = {
 	answer2: "$20M",
 	answer3: "$275K",
 	answer4: "$12K",
-	correct: "the answer is $1.5M, the Master Cube features dozens of precious stones all set in 18-carat gold",
+	correct: "$1.5M, the Master Cube features dozens of precious stones all set in 18-carat gold",
 	solution: "answer1",
 	image: "<img src=\"assets/images/mastercube.bmp\">",
 };
@@ -92,8 +92,8 @@ var activeQuestion = "";
 
 //This function shows the final score
 function endGame(){
-	$("#question").html("Wins: "+wins);
-	$("#image").html("Losses: "+losses);
+	$("#question").html("Correct answers: "+wins);
+	$("#image").html("Wrong answers: "+losses);
 	$(".bspan").html("");
 	$("#startbtn").html("<img src=\"assets/images/mrrubiks.jpg\">")
 };
@@ -150,21 +150,14 @@ var test = "";
 $(document).ready(function(){
 
 	$(".answerButtons").click(function(){
-		
-//This displays the correct answer and image
-		// $("#answerImage").img
-		console.log(activeQuestion.solution)
 
 //This checks the answer for the button clicked
 		var test = jQuery(this).attr("id");	
-		console.log(test);
 
 		if (test === activeQuestion.solution){
-			console.log("true")
 			$("#question").html("Your correct, the answer is: "+activeQuestion.correct)
 			wins++;
 		} else {
-			console.log("wtf")
 			$("#question").html("Your wrong, the answer is: "+activeQuestion.correct)
 			losses++;
 		}
