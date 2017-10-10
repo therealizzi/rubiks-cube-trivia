@@ -175,7 +175,7 @@ $(document).ready(function(){
  		//This adds an image to the img div
  		$("#image").html(activeQuestion.image);
 		
-		pause = 1;
+		pause = 4;
 		 x = setInterval(function(){
  		pause --;
 
