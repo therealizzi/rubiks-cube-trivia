@@ -2,7 +2,7 @@
 <html>
 <head>
 
-	<title>Trivia</title>
+	<title>How Well Do You Know Your Bromances</title>
 
 	<meta charset="utf-8">
 
@@ -24,22 +24,38 @@
 
 <body>
 
-<button class="startgame">Start Game</button>
+<div class="container">
+  <div class="jumbotron">
+	<h1>Welcome to Rubik's Cube Trivia!</h1>
+	<p>Once you click "start", you will have 30 seconds to guess</p>
+	<div class="col-sm-3"></div>
 
-<div id="heartbeat"></div>
+  </div>	
 
-<div id="question"></div>
+  <div class="row">
+  	<div class="col-sm-1"></div>
+  	<div class="col-sm-7">
+		<div id="question"></div>
+		<div id="image"></div>
+		<div id="startbtn"><button class="btn-basic startgame">Start!</button></div>
+  	</div>
 
-<div id="image"></div>
+    <div class="col-sm-4">
 
-<button class="answerButtons" id="answerButton1"></button>
 
-<button class="answerButtons" id="answerButton2"></button>
+ 		<span class="bspan"><div id="heartbeat"></div></span>
 
-<button class="answerButtons" id="answerButton3"></button>
+		<span class="bspan"><button class="btn-basic answerButtons" id="answer1"></button></span>
 
-<button class="answerButtons" id="answerButton4"></button>
+		<span class="bspan"><button class="btn-basic answerButtons" id="answer2"></button></span>
 
+		<span class="bspan"><button class="btn-basic answerButtons" id="answer3"></button></span>
+
+		<span class="bspan"><button class="btn-basic answerButtons" id="answer4"></button></span>
+
+	</div>
+  </div>
+</div>
 
 <script src="assets/javascript/game.js"></script>
 

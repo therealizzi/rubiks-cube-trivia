@@ -1,13 +1,5 @@
-
-
-
-span {
-    color: white;
-    font: bold 15px/10px Helvetica, Sans-Serif;
-    letter-spacing: -1px;
-    background: rgb(0,0,0);
-    background: rgba(0,0,0,0.7);
-    padding: 15px;
+body {
+    background-image: url(../images/background.bmp)
 }
 
 .header {
@@ -17,55 +9,22 @@ span {
 p {
 font-family: 'Titillium Web', sans-serif;
     letter-spacing: 2px;
-    color: white;
+    color: grey;
     font-size: 20px;
 }
 
-.target {
-      color: white;
-    font: 25px/35px Helvetica, Sans-Serif;
-    letter-spacing: 4px;
-    background: rgb(0,0,0);
-    background: rgba(0,0,0,0.7);
-    padding: 15px;
-    height: 100px;
-    width: 100%;
-}
-
-.target2 {
-      color: white;
-    font: 25px/35px Helvetica, Sans-Serif;
-    letter-spacing: 4px;
-    background: rgb(0,0,0);
-    background: rgba(0,0,0,0.7);
-    padding: 5px;
-    height: 40px;
-    width: 100%;
-}
-
-button {
-    height: 77px;
-    width: 82px;
-}
-
-.img1 {
-    background-image: url("../images/star1.bmp"); 
-}
-
-.img2 {
-    background-image: url("../images/star2.bmp"); 
-}
-
-.img3 {
-    background-image: url("../images/star3.bmp"); 
-}
-
-.img4 {
-    background-image: url("../images/star4.bmp"); 
-}
-
-.score {
-    background-color: teal;
-    height: 20px;
+.answerButtons {
+    background-color: white;
+    height: 50px;
     width: 250px;
-}    
+}
+
+.container {
+    background-color: white;
+}
+
+img {
+    max-width: 50%;
+    max-height: 50%;
+    padding: 20px;
+}

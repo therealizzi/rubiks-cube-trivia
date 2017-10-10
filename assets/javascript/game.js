@@ -6,38 +6,97 @@ var wins = "";
 var losses = "";
 
 //These are the question objects
+var theStory = ""
+
 var question1 = {
-	question: "What state am I from",
-	answer1: "Hollywood",
-	answer2: "State of mind",
-	answer3: "New Jersey",
-	answer4: "Montana",
-	correct: "Montana",
-	solution: "answerButton4",
-	image: "<img src=\"assets/images/star1.bmp\">",
+	question: "Question: How many colors are there on a typical Rubiks Cube?",
+	answer1: "6",
+	answer2: "5",
+	answer3: "3",
+	answer4: "9",
+	correct: "6",
+	solution: "answer1",
+	image: "<img src=\"assets/images/rubiks.bmp\">",
 };
 
 var question2 = {
-	question: "How hard is winning?",
-	answer1: "Not hard",
-	answer2: "A little hard",
-	answer3: "Super duper hard",
+	question: "Question: How many mini cubes or \"cubies\" make up a single Rubiks Cube?",
+	answer1: "33",
+	answer2: "9",
+	answer3: "26",
 	answer4: "I'm not sure",
-	correct: "Super duper hard",
-	solution: "answerButton3",
-	image: "<img src=\"assets/images/star2.bmp\">",
+	correct: "26",
+	solution: "answer3",
+	image: "<img src=\"assets/images/cubies.bmp\">",
 };
 
-//This function shows the final score
-function endGame(){
-	$("#heartbeat").html("Wins: "+wins);
-	$("#question").html("Losses: "+losses);
+var question3 = {
+	question: "Question: What year was the first Rubiks Cube sold?",
+	answer1: "1842",
+	answer2: "1909",
+	answer3: "1941",
+	answer4: "1974",
+	correct: "1974",
+	solution: "answer4",
+	image: "<img src=\"assets/images/oldschool.bmp\">",
+};
+
+var question4 = {
+	question: "Question: Approximately how many Rubiks cubes are there in the World?",
+	answer1: "25,000",
+	answer2: "1,250,000",
+	answer3: "50,000,000",
+	answer4: "350,000,000",
+	correct: "over 350m sold worldwide, making it the bestselling toy of all time",
+	solution: "answer4",
+	image: "<img src=\"assets/images/rubiksworld.bmp\">",
+};
+
+var question5 = {
+	question: "Question: What is the World record for solving a Rubiks Cube with one hand?",
+	answer1: "5 seconds",
+	answer2: "10 seconds",
+	answer3: "13 seconds",
+	answer4: "16 seconds",
+	correct: "10 seconds, with the left hand",
+	solution: "answer2",
+	image: "<img src=\"assets/images/leftyrecord.bmp\">",
+};
+
+var question6 = {
+	question: "Question: Where is the biggest Rubiks Cube located?",
+	answer1: "Budapest, Hungary",
+	answer2: "Knoxville, Tennessee",
+	answer3: "Austin, Texas",
+	answer4: "Tokyo, Japan",
+	correct: "Knoxville, Tennessee",
+	solution: "answer2",
+	image: "<img src=\"assets/images/lifesize.bmp\">",
+};
+
+var question7 = {
+	question: "Question: How much is the most expensive cube ever produced worth?",
+	answer1: "$1.5M",
+	answer2: "$20M",
+	answer3: "$275K",
+	answer4: "$12K",
+	correct: "the answer is $1.5M, the Master Cube features dozens of precious stones all set in 18-carat gold",
+	solution: "answer1",
+	image: "<img src=\"assets/images/mastercube.bmp\">",
 };
 
 //This array holds the question objects
-var questionBank = [question1, question2];
+var questionBank = [question1, question2, question3, question4, question5, question6, question7];
 
 var activeQuestion = "";
+
+//This function shows the final score
+function endGame(){
+	$("#question").html("Wins: "+wins);
+	$("#image").html("Losses: "+losses);
+	$(".bspan").html("");
+	$("#startbtn").html("<img src=\"assets/images/mrrubiks.jpg\">")
+};
 
 //This function picks the question and populates the answer buttons
 function pickQuestion(){
@@ -45,10 +104,10 @@ function pickQuestion(){
 		var i = Math.floor(Math.random()*questionBank.length)
 		activeQuestion = questionBank[i];
 		$("#question").html(questionBank[i].question);
-		$("#answerButton1").html(questionBank[i].answer1);
-		$("#answerButton2").html(questionBank[i].answer2);
-		$("#answerButton3").html(questionBank[i].answer3);	
-		$("#answerButton4").html(questionBank[i].answer4);
+		$("#answer1").html(questionBank[i].answer1);
+		$("#answer2").html(questionBank[i].answer2);
+		$("#answer3").html(questionBank[i].answer3);	
+		$("#answer4").html(questionBank[i].answer4);
 		questionBank.splice(i,1);
 	} else {
 		endGame();
@@ -70,7 +129,7 @@ function startTimer(){
 
  	//This displays the countdown
  	time --;
- 	$("#heartbeat").html(time);
+ 	$("#heartbeat").html("Time remaining: "+time);
 
  	//This stops the countdown at 0:00
  	if (time == 0){
@@ -82,6 +141,7 @@ function startTimer(){
 //This "Start Game" button function runs startTimer()
 $(".startgame").click(function(){
 	startTimer();
+	$("#startbtn").html("");
 });
 
 //This checks answer, starts break-counter, and shows result
@@ -115,7 +175,7 @@ $(document).ready(function(){
  		//This adds an image to the img div
  		$("#image").html(activeQuestion.image);
 		
-		pause = 3;
+		pause = 1;
 		 x = setInterval(function(){
  		pause --;
 
