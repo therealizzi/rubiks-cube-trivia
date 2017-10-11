@@ -1,13 +1,14 @@
-//these are global variables
-var time = "";
+//These are the global variables
 var x = "";
-var pause = "";
+var test = "";
 var wins = "";
+var time = "";
+var pause = "";
 var losses = "";
+var theStory = "";
+var activeQuestion = "";
 
 //These are the question objects
-var theStory = ""
-
 var question1 = {
 	question: "Question: How many colors are there on a typical Rubiks Cube?",
 	answer1: "6",
@@ -88,9 +89,7 @@ var question7 = {
 //This array holds the question objects
 var questionBank = [question1, question2, question3, question4, question5, question6, question7];
 
-var activeQuestion = "";
-
-//This function shows the final score
+//This function ends the game and shows the final score
 function endGame(){
 	$("#question").html("Correct answers: "+wins);
 	$("#image").html("Wrong answers: "+losses);
@@ -98,7 +97,7 @@ function endGame(){
 	$("#startbtn").html("<img src=\"assets/images/mrrubiks.jpg\">")
 };
 
-//This function picks the question and populates the answer buttons
+//This function picks a random question from the array and populates the HTML
 function pickQuestion(){
 	if (questionBank.length > 0){
 		var i = Math.floor(Math.random()*questionBank.length)
@@ -113,6 +112,43 @@ function pickQuestion(){
 		endGame();
 	};
 };
+
+//This function checks the results of the game, shows the correct answer and starts a new game
+function newGame(){
+
+	//This collects the id from the button that was clicked
+	var test = jQuery(this).attr("id");	
+
+	//This checks the solution against the button clicked
+	if (test === activeQuestion.solution){
+		$("#question").html("Your correct, the answer is: "+activeQuestion.correct)
+		wins++;
+	} else {
+		$("#question").html("Your wrong, the answer is: "+activeQuestion.correct)
+		losses++;
+	}
+
+	//This clears the counter from the previous game
+	clearInterval(x);
+
+	//This adds the question image to the HTML
+	$("#image").html(activeQuestion.image);
+		
+	//This counts down 4 seconds, while the answer is being displayed
+	pause = 4;
+	x = setInterval(function(){
+ 	pause--;
+
+	//This ends counter at 0 and initiates the timer for the next game
+	if (pause === 0){
+	clearInterval(x);
+	startTimer();
+	}; 
+	}, 1000);
+};
+
+//This initiates a new game based on each button click
+$(document).on("click",".answerButtons",newGame);
 
 //This function runs pickQuestion() and starts a new round
 function startTimer(){
@@ -132,54 +168,17 @@ function startTimer(){
  	$("#heartbeat").html("Time remaining: "+time);
 
  	//This stops the countdown at 0:00
- 	if (time == 0){
+ 	if (time === 0){
+ 		losses ++;
  		clearInterval(x);
+ 		newGame();
  	}
  	}, 1000);
 };
 
-//This "Start Game" button function runs startTimer()
+//This button function initiates startTimer() and starts the very first game
 $(".startgame").click(function(){
 	startTimer();
 	$("#startbtn").html("");
 });
 
-//This checks answer, starts break-counter, and shows result
-var test = "";
-
-$(document).ready(function(){
-
-	$(".answerButtons").click(function(){
-
-//This checks the answer for the button clicked
-		var test = jQuery(this).attr("id");	
-
-		if (test === activeQuestion.solution){
-			$("#question").html("Your correct, the answer is: "+activeQuestion.correct)
-			wins++;
-		} else {
-			$("#question").html("Your wrong, the answer is: "+activeQuestion.correct)
-			losses++;
-		}
-
-//This clears counter and counts down 3 seconds
-		clearInterval(x);
-
- 		//This adds an image to the img div
- 		$("#image").html(activeQuestion.image);
-		
-		pause = 4;
-		 x = setInterval(function(){
- 		pause --;
-
- 		$("#heartbeat").html(pause);
-
- //This ends counter at 0 and initiates next game
- 		if (pause == 0){
- 		clearInterval(x);
- 		startTimer();
- 		}; 
- 		}, 1000);
-
-	});
-});
